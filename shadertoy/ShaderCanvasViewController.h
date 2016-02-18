@@ -8,10 +8,12 @@
 
 #import <GLKit/GLKit.h>
 #import "APIShaderObject.h"
+#import "VRSettings.h"
 
 @interface ShaderCanvasViewController : GLKViewController
 
-- (BOOL) compileShaderPass:(APIShaderPass *)shader theError:(NSString **)error;
+- (void) setVRSettings:(VRSettings *)vrSettings;
+- (BOOL) compileShader:(APIShaderObject *)shader soundPass:(bool)soundPass theError:(NSString **)error;
 
 - (void) start;
 - (void) pause;
@@ -27,5 +29,11 @@
 - (void) renderOneFrame:(float)globalTime success:(void (^)(UIImage *image))success;
 - (void) setCanvasScaleFactor:(float)scaleFactor;
 - (void) setDefaultCanvasScaleFactor;
+
+- (void) pauseInputs;
+- (void) resumeInputs;
+
+- (void)updateKeyboardBufferDown:(int)v;
+- (void)updateKeyboardBufferUp:(int)v;
 
 @end
